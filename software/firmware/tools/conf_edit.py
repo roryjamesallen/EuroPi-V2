@@ -9,8 +9,8 @@ from europi_config import EuroPiConfig
 from europi_script import EuroPiScript
 
 from configuration import ConfigFile
-
 from experimental.settings_menu import *
+from framebuf import FrameBuffer, MONO_HLSB
 
 
 class SectionHeader(MenuItem):
@@ -107,13 +107,32 @@ class ConfigurationEditor(EuroPiScript):
         # fmt: on
 
     def main(self):
+        # fmt: off
+        disk_icon = bytearray(b'\xff\xf0\x9f\xe8\x9f$\x9f"\x9f!\x9f\xe1\x80\x01\xbf\xfd\xa0\x05\xaf\xf5\xa0\x05\xaf\xf5\xa0\x05\xbf\xfd\x80\x01\xff\xff')
+        # fmt: on
+
+        icon_height = OLED_HEIGHT // 2 - 8
+        text_height = OLED_HEIGHT // 2 - CHAR_HEIGHT // 2
+
         while True:
-            oled.fill(0)
-            self.menu.draw()
-            oled.show()
+            if self.menu.ui_dirty:
+                oled.fill(0)
+                self.menu.draw()
+                oled.show()
 
             if self.menu.settings_dirty:
+                # visually indicate we're saving
+                oled.fill(0)
+                oled.blit(FrameBuffer(disk_icon, 16, 16, MONO_HLSB), 0, icon_height)
+                oled.text("Saving...", 18, text_height, 1)
+                oled.show()
+
                 self.menu.save(ConfigFile.config_filename(EuroPiConfig))
+                time.sleep(0.5)
+
+                oled.fill(0)
+                self.menu.draw()
+                oled.show()
 
 
 if __name__ == "__main__":
