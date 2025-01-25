@@ -21,7 +21,7 @@ The same process described above for Windows can also be used on Mac and Linux, 
    * [Mac instructions](https://docs.docker.com/desktop/setup/install/mac-install/)
 1. If not already cloned, [create a local clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=desktop) of the EuroPi repository
 1. Open a terminal (ctrl+alt+T on most desktop Linux distributions) and run `cd /path/to/EuroPi` (replacing the path with the path to the repository cloned above)
-1. In the same terminal, run `/software/uf2_build/build_uf2.sh`
+1. In the same terminal, run `./software/uf2_build/build_uf2.sh`
 1. Wait for .uf2 to compile (this may take some time, do not close the terminal window_
 1. The custom .uf2 build can be found at `EuroPi/software/uf2_build/europi-dev.uf2`
 
