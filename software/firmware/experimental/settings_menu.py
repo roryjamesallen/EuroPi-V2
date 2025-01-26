@@ -773,13 +773,13 @@ class SettingsMenu:
         self.active_item.short_press()
 
         # Cycle the knob bank, if necessary
-        if type(self.knob) is KnobBank:
+        if type(self._knob) is KnobBank:
             if self.active_item.is_editable:
-                self.knob.set_current("choice")
+                self._knob.set_current("choice")
             elif self.active_item.children and len(self.active_item.children) > 0:
-                self.knob.set_current("main_menu")
+                self._knob.set_current("main_menu")
             else:
-                self.active_item.set_current("submenu")
+                self._knob.set_current("submenu")
 
         self.short_press_cb()
 
