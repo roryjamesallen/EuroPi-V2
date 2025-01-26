@@ -776,6 +776,9 @@ class SettingsMenu:
         if type(self._knob) is KnobBank:
             if self.active_item.is_editable:
                 self._knob.set_current("choice")
+                if issubclass(type(self.active_item), ChoiceMenuItem):
+                    self.knob.value = self.active_item.choices.index(
+                        self.active_item.value_choice) / len(self.active_item.choices)
             elif self.active_item.children and len(self.active_item.children) > 0:
                 self._knob.set_current("main_menu")
             else:
