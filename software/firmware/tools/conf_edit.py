@@ -10,7 +10,21 @@ from europi_script import EuroPiScript
 
 from configuration import ConfigFile
 
+from experimental.knobs import KnobBank
 from experimental.settings_menu import *
+
+
+## Lockable knob bank for K2 to make menu navigation a little easier
+#
+#  Note that this does mean _sometimes_ you'll need to sweep the knob all the way left/right
+#  to unlock it
+k2_bank = (
+    KnobBank.builder(k2)
+    .with_unlocked_knob("main_menu")
+    .with_locked_knob("submenu", initial_percentage_value=0)
+    .with_locked_knob("choice", initial_percentage_value=0)
+    .build()
+)
 
 
 class SectionHeader(MenuItem):
@@ -101,7 +115,8 @@ class ConfigurationEditor(EuroPiScript):
                     title="I2C",
                     children=i2c_items
                 ),
-            ]
+            ],
+            navigation_knob=k2_bank,
         )
         self.menu.load_defaults(ConfigFile.config_filename(EuroPiConfig))
         # fmt: on
