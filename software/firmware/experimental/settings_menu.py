@@ -399,10 +399,6 @@ class SettingMenuItem(ChoiceMenuItem):
                 self.choose(new_choice)
                 self.ui_dirty = True
                 self.menu.settings_dirty = True
-        else:
-            # lock the knob to our current value
-            if type(self.menu.knob) is LockableKnob:
-                self.menu.knob.value = self.choices.index(self.value_choice) / len(self.choices)
 
         super().short_press()
 
@@ -602,10 +598,6 @@ class ActionMenuItem(ChoiceMenuItem):
             # fire the callback if we're exiting edit-mode
             choice = self.menu.knob.choice(self.choices)
             self.callback(choice, self.callback_arg)
-        else:
-            # lock the knob to the default action
-            if type(self.menu.knob) is LockableKnob:
-                self.menu.knob.value = 0
 
         super().short_press()
 
@@ -784,6 +776,12 @@ class SettingsMenu:
         if type(self._knob) is KnobBank:
             if self.active_item.is_editable:
                 self._knob.set_current("choice")
+                if issubclass(type(self.active_item), SettingMenuItem):
+                    # lock the knob to our current value
+                    self._knob.current.change_lock_value(
+                        self.active_item.choices.index(self.active_item.value_choice) /
+                            len(self.active_item.choices)
+                    )
             elif self.active_item.children and len(self.active_item.children) > 0:
                 self._knob.set_current("main_menu")
             else:

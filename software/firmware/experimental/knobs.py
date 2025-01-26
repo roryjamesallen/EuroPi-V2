@@ -84,6 +84,13 @@ class LockableKnob(Knob):
         self.value = self._sample_adc(samples=samples)
         self.state = LockableKnob.STATE_LOCKED
 
+    def change_lock_value(self, percent=0.0):
+        """Change the current value to reflect a desired percentage
+
+        @param percent  The 0-1 value we want to re-lock the knob at
+        """
+        self.value = int(MAX_UINT16 * (1.0-percent))
+
     def request_unlock(self):
         """Requests that the knob be unlocked. The knob will unlock the next time a reading of it's
         position is taken that is withing the threshold percentage of the locked value. That is,
