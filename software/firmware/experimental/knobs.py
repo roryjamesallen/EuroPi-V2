@@ -89,7 +89,7 @@ class LockableKnob(Knob):
 
         @param percent  The 0-1 value we want to re-lock the knob at
         """
-        self.value = int(MAX_UINT16 * (1.0-percent))
+        self.value = int(MAX_UINT16 * (1.0 - percent))
 
     def request_unlock(self):
         """Requests that the knob be unlocked. The knob will unlock the next time a reading of it's
