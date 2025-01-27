@@ -23,6 +23,7 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Arpeggiator",       "contrib.arp.Arpeggiator"],
     ["Bernoulli Gates",   "contrib.bernoulli_gates.BernoulliGates"],
     ["Bezier Curves",     "contrib.bezier.Bezier"],
+    ["Binary Counter",    "contrib.binary_counter.BinaryCounter"],
     ["Bit Garden",        "contrib.bit_garden.BitGarden"],
     ["Clock Modifier",    "contrib.clock_mod.ClockModifier"],
     ["Coin Toss",         "contrib.coin_toss.CoinToss"],
@@ -66,7 +67,7 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Volts",             "contrib.volts.OffsetVoltages"],
 
     # System tools, in alphabetical order with a _ prefix
-  
+
     ["_About",            "tools.about.About"],
     ["_BootloaderMode",   "bootloader_mode.BootloaderMode"],
     ["_Calibrate",        "tools.calibrate.Calibrate"],

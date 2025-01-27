@@ -25,6 +25,12 @@ Smooth random voltages based on bezier curves. Inspired by the ADDAC507 Random B
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: Random</i>
 
+### Binary Counter \[ [documentation](/software/contrib/binary_counter.md) | [script](/software/contrib/binary_counter.py) \]
+A simple gate sequencer implemented using a 6-bit binary counter.
+
+<i>Author: [chrisib](https://github.com/chrisib)</i>
+<br><i>Labels: gates, sequencer, binary</i>
+
 ### Clock Modifier \[ [documentation](/software/contrib/clock_mod.md) | [script](/software/contrib/clock_mod.md) \]
 A clock multiplier or divider. Each channel has an independently-controllable modifier, multiplying or dividing an external clock signal on `din`.
 
