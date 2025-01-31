@@ -45,6 +45,7 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Logic",             "contrib.logic.Logic"],
     ["Lutra",             "contrib.lutra.Lutra"],
     ["MasterClock",       "contrib.master_clock.MasterClock"],
+    ["Morse",             "contrib.morse.Morse"],
     ["NoddyHolder",       "contrib.noddy_holder.NoddyHolder"],
     ["Pam's Workout",     "contrib.pams.PamsWorkout2"],
     ["Particle Phys.",    "contrib.particle_physics.ParticlePhysics"],
@@ -66,7 +67,7 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Volts",             "contrib.volts.OffsetVoltages"],
 
     # System tools, in alphabetical order with a _ prefix
-  
+
     ["_About",            "tools.about.About"],
     ["_BootloaderMode",   "bootloader_mode.BootloaderMode"],
     ["_Calibrate",        "tools.calibrate.Calibrate"],

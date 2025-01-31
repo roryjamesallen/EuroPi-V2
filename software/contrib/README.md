@@ -149,6 +149,13 @@ Inspired by [Expert Sleepers' Otterley](https://expert-sleepers.co.uk/otterley.h
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: lfo</i>
 
+### Morse \[ [documentation](/software/contrib/morse.md) | [script](/software/contrib/morse.md) \]
+
+A gate sequencer that uses Morse code to generate the on/off pattern.
+
+<i>Author: [chrisib](https://github.com/chrisib)</i>
+<br><i>Labels: gates, sequencer</i>
+
 ### Noddy Holder \[ [documentation](/software/contrib/noddy_holder.md) | [script](/software/contrib/noddy_holder.py) \]
 Two channels of sample/track and hold based on a single trigger and CV source
 
