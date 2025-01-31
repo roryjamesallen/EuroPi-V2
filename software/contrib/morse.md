@@ -28,6 +28,27 @@ Normal gate outputs go low on the falling edge of the clock signal
 on `DIN`. Latched gate outputs stay high across multiple pulses if
 adjacent signals would be high.
 
+## Patching Ideas
+
+Because `Morse` outputs a binary on/off sequence instead of
+long/short gates, it doesn't naturally sound like morse code.
+But with some clever patching you can create audible morse code!
+
+### Idea 1: Two envelopes
+
+Patch the output from `CV1` into an envelope with a short
+decay and the output from `CV4` into an envelope with a long
+decay. Connect these two envelopes into your VCA (or if your
+VCA only has 1 CV input, use a mixer).
+
+### Idea 2: CV-controlled envelope
+
+If your envelope generator has CV over the decay, you can patch
+`CV1` into the envelope's trigger, and `CV5` into the decay CV.
+You may need to attenuate the CV control to get the durations right,
+but this will let you generate long and short pulses with a
+single envelope.
+
 ## Morse Code Reference
 
 | Letter/Number | Morse representation |
