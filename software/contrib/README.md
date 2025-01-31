@@ -28,6 +28,13 @@ Smooth random voltages based on bezier curves. Inspired by the ADDAC507 Random B
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: Random</i>
 
+### Bit Garden \[ [documentation](/software/contrib/bit_garden.md) | [script](/software/contrib/bit_garden.py) \]
+
+Mirrors a gate/trigger input, with adjustable skip probability across channels.
+
+<i>Author: [awonak](https://github.com/awonak)</i>
+<br><i>Labels: random, triggers</i>
+
 ### Clock Modifier \[ [documentation](/software/contrib/clock_mod.md) | [script](/software/contrib/clock_mod.md) \]
 
 A clock multiplier or divider. Each channel has an independently-controllable modifier, multiplying or dividing an external clock signal on `din`.
@@ -78,6 +85,7 @@ A loopable random gate sequencer based on a binary tree.  Inspired by the Robaux
 <br><i>Labels: sequencer, gates, triggers, randomness</i>
 
 ### Egressus Melodium \[ [documentation](/software/contrib/egressus_melodiam.md) | [script](/software/contrib/egressus_melodiam.py) \]
+
 Clockable and free-running LFO and random CV pattern generator
 
 <i>Author: [gamecat69](https://github.com/gamecat69)</i>
@@ -164,6 +172,13 @@ Inspired by [Expert Sleepers' Otterley](https://expert-sleepers.co.uk/otterley.h
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: lfo</i>
 
+### Master Clock \[ [documentation](/software/contrib/master_clock.md) | [script](/software/contrib/master_clock.md) \]
+
+A master clock and clock divider.
+
+<i>Author: [gamecat69](https://github.com/gamecat69)</i>
+<br><i>Labels: clock, gates, triggers</i>
+
 ### Morse \[ [documentation](/software/contrib/morse.md) | [script](/software/contrib/morse.md) \]
 
 A gate sequencer that uses Morse code to generate the on/off pattern.
@@ -206,6 +221,13 @@ Requires installing and configuring a realtime clock module, connected to EuroPi
 
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: sequencer, gate, random, realtime clock</i>
+
+### Piconacci \[ [documentation](/software/contrib/piconacci.md) | [script](/software/contrib/piconacci.py) \]
+
+A clock divider whose divisions are based on the Fibonacci sequence.
+
+<i>Author: [seanbechhofer](https://github.com/seanbechhofer)</i>
+<br><i>Labels: triggers, sequencer</i>
 
 ### Poly Square \[ [documentation](/software/contrib/poly_square.md) | [script](/software/contrib/poly_square.py) \]
 
@@ -339,6 +361,13 @@ Using the threshold knob and analogue input, users can determine whether a 1 or 
 An example script for the menu system
 
 This script can be copied and altered as a starting point for your own scripts that are to be menu compatible, and make use of the save state functionality
+
+<i>Author: [mjaskula](https://github.com/mjaskula)</i>
+<br><i>Labels: example</i>
+
+### Knob Playground \[ [script](/software/contrib/knob_playground.py) \]
+
+An example showing the use of knob banks and lockable knobs.
 
 <i>Author: [mjaskula](https://github.com/mjaskula)</i>
 <br><i>Labels: example</i>
