@@ -105,12 +105,14 @@ class Morse(EuroPiScript):
 
         # create a lockable bank of knobs so we can edit letters
         # without accidentally changing them
-        builder = KnobBank.builder(k2).with_unlocked_knob("-1")
+        builder = KnobBank.builder(k2).with_unlocked_knob("-1", threshold_percentage=0.01)
         for i in range(len(self.letters)):
-            percent = valid_letters.index(self.letters[i]) / len(valid_letters)
-            builder = builder.with_locked_knob(str(i), initial_percentage_value=percent)
+            idx = valid_letters.index(self.letters[i])
+            percent = (idx + 0.5) / len(valid_letters)
+            builder = builder.with_locked_knob(str(i), initial_percentage_value=percent, threshold_percentage=0.01)
         self.k2_bank = builder.build()
 
+        self.ui_dirty = True
         self.gate_recvd = False
         self.sequence_counter = 0
 
@@ -122,6 +124,7 @@ class Morse(EuroPiScript):
                 n = len(self.letters) - 1
             self.hover_letter = n
             self.k2_bank.set_current(str(self.hover_letter))
+            self.ui_dirty = True
 
         @b2.handler
         def on_b2_press():
@@ -131,6 +134,7 @@ class Morse(EuroPiScript):
                 n = -1
             self.hover_letter = n
             self.k2_bank.set_current(str(self.hover_letter))
+            self.ui_dirty = True
 
         @din.handler
         def on_din_rise():
@@ -145,13 +149,8 @@ class Morse(EuroPiScript):
             self.end_of_word_out.off()
 
     def save_state(self):
-        w = ""
-        for l in self.letters:
-            if l is not None:
-                w = w + l
-
         cfg = {
-            "word": w
+            "letters": self.letters
         }
         self.save_state_json(cfg)
 
@@ -181,11 +180,49 @@ class Morse(EuroPiScript):
         return seq
 
     def draw(self):
-        oled.centre_text(f"{self.hover_letter}\n{self.k2_bank.current.percent():0.2f}")
+        top = OLED_HEIGHT // 2 - CHAR_HEIGHT // 2
+        left = OLED_WIDTH // 2 - (CHAR_WIDTH * len(self.letters)) // 2
+
+        oled.fill(0)
+
+        w = ''
+        for ch in self.letters:
+            if ch is None:
+                w = w + "."
+            else:
+                w = w + ch
+
+        oled.text(
+            w,
+            left,
+            top,
+            1
+        )
+
+        if self.hover_letter >= 0:
+            oled.line(
+                left + self.hover_letter * CHAR_WIDTH,
+                top + CHAR_HEIGHT + 1,
+                left + (self.hover_letter + 1) * CHAR_WIDTH,
+                top + CHAR_HEIGHT + 1,
+                1
+            )
+
+        oled.show()
 
     def main(self):
         while True:
-            self.draw()
+            if self.hover_letter >= 0:
+                old_ch = self.letters[self.hover_letter]
+                new_ch = self.k2_bank.current.choice(valid_letters)
+                if new_ch != old_ch:
+                    self.letters[self.hover_letter] = new_ch
+                    self.ui_dirty = True
+                    self.save_state()
+
+            if self.ui_dirty:
+                self.ui_dirty = False
+                self.draw()
 
             sequence = self.expand_sequence()
             end_of_letters = self.get_letter_ends()
@@ -225,10 +262,6 @@ class Morse(EuroPiScript):
             # check for end of word
             if self.sequence_counter == len(sequence):
                 self.end_of_word_out.on()
-
-
-
-
 
 
 if __name__ == "__main__":
