@@ -38,9 +38,7 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Gate Phaser",       "contrib.gate_phaser.GatePhaser"],
     ["Hamlet",            "contrib.hamlet.Hamlet"],
     ["HarmonicLFOs",      "contrib.harmonic_lfos.HarmonicLFOs"],
-    ["HelloWorld",        "contrib.hello_world.HelloWorld"],
     ["Itty Bitty",        "contrib.itty_bitty.IttyBitty"],
-    ["KnobPlayground",    "contrib.knob_playground.KnobPlayground"],
     ["Kompari",           "contrib.kompari.Kompari"],
     ["Logic",             "contrib.logic.Logic"],
     ["Lutra",             "contrib.lutra.Lutra"],
@@ -65,6 +63,13 @@ EUROPI_SCRIPTS = OrderedDict([
     ["Traffic",           "contrib.traffic.Traffic"],
     ["Turing Machine",    "contrib.turing_machine.EuroPiTuringMachine"],
     ["Volts",             "contrib.volts.OffsetVoltages"],
+
+    # Examples & proof-of-concept scripts that aren't generally useful
+    # but someone might want to enable to test out
+    #["HelloWorld",        "contrib.hello_world.HelloWorld"],
+    #["KnobPlayground",    "contrib.knob_playground.KnobPlayground"],
+    #["Menu Example",      "contrib.settings_menu_example.SettingsMenuExample"],
+
 
     # System tools, in alphabetical order with a _ prefix
 

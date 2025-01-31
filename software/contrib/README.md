@@ -42,6 +42,15 @@ A clock multiplier or divider. Each channel has an independently-controllable mo
 <i>Author: [chrisib](https://github.com/chrisib)</i>
 <br><i>Labels: clock, clock multiplier, clock divider, gates</i>
 
+### Coin Toss \[ [documentation](/software/contrib/coin_toss.md) | [script](/software/contrib/coin_toss.py) \]
+
+A probability utility with an output based on a percentage choice between 1 or 0
+
+Using the threshold knob and analogue input, users can determine whether a 1 or a 0 is preferred by the weighted random choice each time the digital input is triggered, or an internal clock depending on the mode
+
+<i>Author: [awonak](https://github.com/awonak)</i>
+<br><i>Labels: Clock, Random, CV Generation</i>
+
 ### Consequencer \[ [documentation](/software/contrib/consequencer.md) | [script](/software/contrib/consequencer.md) \]
 
 A gate and CV sequencer inspired by Mutable Instruments Grids and the Music Thing Modular Turing Machine
@@ -275,6 +284,15 @@ The outputs can also be rotated as inspired by the 4MS Rotating Clock Divider
 <i>Author: [roryjamesallen](https://github.com/roryjamesallen)</i>
 <br><i>Labels: n/a</i>
 
+### Scope \[ [script](/software/contrib/scope.py) \]
+
+An oscilloscope script to monitor the analogue and digital inputs
+
+The current values of the analogue and digital inputs are displayed in an oscilloscope style on the OLED display, and copies of both signals, as well as an inverted gate signal, are available from the CV outputs
+
+<i>Author: [mjaskula](https://github.com/mjaskula)</i>
+<br><i>Labels: example, utility</i>
+
 ### Sequential Switch \[ [documentation](/software/contrib/sequential_switch.md) | [script](/software/contrib/sequential_switch.py) \]
 
 A 2-6 output sequential switch.  The analogue input is mirrored to one of the outputs, with the specific output changed every time a trigger is received.
@@ -347,14 +365,7 @@ Generates static voltages on CV1-6. Useful for when you need a reliable, fixed v
 <details>
 <summary><h2>Proof of Concept Scripts</h2></summary>
 
-### Coin Toss \[ [documentation](/software/contrib/coin_toss.md) | [script](/software/contrib/coin_toss.py) \]
-
-A probability utility with an output based on a percentage choice between 1 or 0
-
-Using the threshold knob and analogue input, users can determine whether a 1 or a 0 is preferred by the weighted random choice each time the digital input is triggered, or an internal clock depending on the mode
-
-<i>Author: [awonak](https://github.com/awonak)</i>
-<br><i>Labels: Clock, Random, CV Generation</i>
+These scripts are NOT included in the standard `menu.py`, but can be added if desired.
 
 ### Hello World \[ [script](/software/contrib/hello_world.py) \]
 
@@ -372,13 +383,11 @@ An example showing the use of knob banks and lockable knobs.
 <i>Author: [mjaskula](https://github.com/mjaskula)</i>
 <br><i>Labels: example</i>
 
-### Scope \[ [script](/software/contrib/scope.py) \]
+### Settings Menu Example \[ [script](/software/contrib/settings_menu_example.py) \]
 
-An oscilloscope script to monitor the analogue and digital inputs
+A simple example showing how to use configuration points and the settings menu to create an application GUI.
 
-The current values of the analogue and digital inputs are displayed in an oscilloscope style on the OLED display, and copies of both signals, as well as an inverted gate signal, are available from the CV outputs
-
-<i>Author: [mjaskula](https://github.com/mjaskula)</i>
-<br><i>Labels: utility</i>
+<i>Author: [chrisib](https://github.com/chrisib)</i>
+<br><i>Labels: example</i>
 
 </details>
