@@ -14,9 +14,9 @@ The user uses the buttons and knobs to enter a word of up to
 | `DIN` | Input clock/gate source                   |
 | `AIN` | Unused                                    |
 | `K1`  | Unused                                    |
-| `K2`  | Used to select letters                    |
-| `B1`  | Move letter input to the left             |
-| `B2`  | Move letter input to the right            |
+| `K2`  | Select the letter to edit                 |
+| `B1`  | Cycle the letter one position backwards   |
+| `B2`  | Cycle the letter one position forwards    |
 | `CV1` | Gate output, treating `.` as high         |
 | `CV2` | Latched gate output, treating `.` as high |
 | `CV3` | End-of-letter gate                        |

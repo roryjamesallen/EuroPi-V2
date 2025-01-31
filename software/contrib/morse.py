@@ -1,10 +1,10 @@
 from europi import *
 from europi_script import EuroPiScript
 
-from experimental.knobs import *
+BLANK_LETTER = "."
 
 morse_alphabet = {
-    None: "",
+    BLANK_LETTER: "",
     "A": ".-",
     "B": "-...",
     "C": "-.-.",
@@ -44,7 +44,7 @@ morse_alphabet = {
 }
 
 valid_letters = [
-    None,
+    BLANK_LETTER,
     "A",
     "B",
     "C",
@@ -94,23 +94,12 @@ class Morse(EuroPiScript):
     def __init__(self):
         super().__init__()
 
-        default_letters = [None] * 16
+        default_letters = [BLANK_LETTER] * 16
         saved_cfg = self.load_state_json()
         self.letters = saved_cfg.get("letters", default_letters)
 
-        # the letter the user is hovering over
-        # may be -1 to indicate no letter
-        # otherwise must be in range [0, 16)
-        self.hover_letter = -1
-
-        # create a lockable bank of knobs so we can edit letters
-        # without accidentally changing them
-        builder = KnobBank.builder(k2).with_unlocked_knob("-1", threshold_percentage=0.01)
-        for i in range(len(self.letters)):
-            idx = valid_letters.index(self.letters[i])
-            percent = (idx + 0.5) / len(valid_letters)
-            builder = builder.with_locked_knob(str(i), initial_percentage_value=percent, threshold_percentage=0.01)
-        self.k2_bank = builder.build()
+        # the index of the letter the user is hovering over
+        self.hover_letter = 0
 
         self.ui_dirty = True
         self.gate_recvd = False
@@ -118,22 +107,18 @@ class Morse(EuroPiScript):
 
         @b1.handler
         def on_b1_press():
-            n = self.hover_letter - 1
-            if n < -1:
-                # wrap around
-                n = len(self.letters) - 1
-            self.hover_letter = n
-            self.k2_bank.set_current(str(self.hover_letter))
+            # advance the letter 1 place down
+            idx = valid_letters.index(self.letters[self.hover_letter])
+            idx = (idx - 1) % len(valid_letters)
+            self.letters[self.hover_letter] = valid_letters[idx]
             self.ui_dirty = True
 
         @b2.handler
         def on_b2_press():
-            n = self.hover_letter + 1
-            if n >= len(self.letters):
-                # wrap around
-                n = -1
-            self.hover_letter = n
-            self.k2_bank.set_current(str(self.hover_letter))
+            # advance the letter 1 place up
+            idx = valid_letters.index(self.letters[self.hover_letter])
+            idx = (idx + 1) % len(valid_letters)
+            self.letters[self.hover_letter] = valid_letters[idx]
             self.ui_dirty = True
 
         @din.handler
@@ -199,26 +184,25 @@ class Morse(EuroPiScript):
             1
         )
 
-        if self.hover_letter >= 0:
-            oled.line(
-                left + self.hover_letter * CHAR_WIDTH,
-                top + CHAR_HEIGHT + 1,
-                left + (self.hover_letter + 1) * CHAR_WIDTH,
-                top + CHAR_HEIGHT + 1,
-                1
-            )
+        oled.line(
+            left + self.hover_letter * CHAR_WIDTH,
+            top + CHAR_HEIGHT + 1,
+            left + (self.hover_letter + 1) * CHAR_WIDTH,
+            top + CHAR_HEIGHT + 1,
+            1
+        )
 
         oled.show()
 
     def main(self):
         while True:
-            if self.hover_letter >= 0:
-                old_ch = self.letters[self.hover_letter]
-                new_ch = self.k2_bank.current.choice(valid_letters)
-                if new_ch != old_ch:
-                    self.letters[self.hover_letter] = new_ch
-                    self.ui_dirty = True
-                    self.save_state()
+            letter = int(k2.percent() * len(self.letters))
+            if letter == len(self.letters):
+                # .percent() can return 1, so avoid out-of-bounds issues
+                letter -= 1
+            if letter != self.hover_letter:
+                self.hover_letter = letter
+                self.ui_dirty = True
 
             if self.ui_dirty:
                 self.ui_dirty = False
